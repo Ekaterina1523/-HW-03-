@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="kanban-root"></div>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone/umd/babel.min.js"></script>
+    <script type="text/babel">
+
+function UserMenu() {
+    const [menuOpen, setMenuOpen] = React.useState(false);
+
+    const toggleMenu = () => {
+                setMenuOpen(!menuOpen);
+            };
+
+            return (
+                <div className="user-menu-container">
+                    <div className="user-avatar" onClick={toggleMenu}>
+                        <img src="avatar.jpg" alt="User Avatar" className="avatar" />
+                        <span className={`arrow ${menuOpen ? 'up' : 'down'}`}></span>
+                    </div>
+                    {menuOpen && (
+                        <ul className="dropdown-list">
+                            <li>My account</li>
+                            <li>My tasks</li>
+                            <li>Log out</li>
+                        </ul>
+                    )}
+                </div>
+            );
+        }
+
+        function App() {
+            return (
+                <div className="app">
+                    <UserMenu />
+                    {/* Other Kanban board components go here */}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('kanban-root'));
+    </script>
+</body>
+</html>
